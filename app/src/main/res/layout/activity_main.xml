@@ -66,11 +66,20 @@
         android:textSize="20dp"
         app:fontFamily="sans-serif" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/searchFilter"
+        android:hint="Filter your tasks"
+        android:layout_below="@id/textView1"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"/>
+
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/textView1"
+        android:layout_below="@id/searchFilter"
         android:choiceMode="multipleChoice"/>
 
 </RelativeLayout>

@@ -2,8 +2,14 @@ package com.example.todo_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.SparseBooleanArray
-import android.widget.*
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
 
 /*Darbu veica Žanis Lācis un Kristers Celmiņš*/
 
@@ -19,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val add: Button = findViewById(R.id.add)
         val delete: Button = findViewById(R.id.delete)
         val update: Button = findViewById(R.id.update)
+        val searchFilter: EditText = findViewById(R.id.searchFilter)
 
         add.setOnClickListener {
             itemlist.add(editText.text.toString())
@@ -40,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             position.clear()
             adapter.notifyDataSetChanged()
         }
-
         update.setOnClickListener {
             val position: SparseBooleanArray = listView.checkedItemPositions
             val counter = listView.count
@@ -56,6 +62,16 @@ class MainActivity : AppCompatActivity() {
             position.clear()
             adapter.notifyDataSetChanged()
         }
+
+        searchFilter.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable) {
+            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                adapter.getFilter().filter(s)
+            }
+        })
 
     }
 }
